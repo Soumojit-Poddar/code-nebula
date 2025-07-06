@@ -635,6 +635,58 @@
             transition: width 1s ease;
         }
 
+        /* Date and Time Display */
+        .date-time-display {
+            text-align: right;
+        }
+
+        .current-date {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .current-time {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .time-icon {
+            font-size: 20px;
+        }
+
+        /* Streak Counter */
+        .streak-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: rgba(var(--secondary-hue), 70%, 60%, 0.1);
+            padding: 10px 15px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        .streak-icon {
+            color: #ff6b6b;
+            font-size: 20px;
+        }
+
+        .streak-number {
+            font-weight: bold;
+            color: var(--text-color);
+        }
+
+        .streak-label {
+            font-size: 14px;
+            color: #666;
+        }
+
         /* Activities Page */
         .activities-page {
             padding: 30px 0;
@@ -1059,10 +1111,6 @@
             font-size: 14px;
             transition: all 0.3s ease;
             border: none;
-        }
-
-        .journal-audio-btn:hover {
-            background-color: rgba(var(--secondary-hue), 70%, 60%, 0.1);
         }
 
         .journal-audio-btn.recording {
@@ -1664,7 +1712,6 @@
             opacity: 0;
             transform: translateY(20px);
         }
-       
 
         /* Animations */
         @keyframes fadeIn {
@@ -1818,6 +1865,11 @@
             .memory-grid {
                 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
+
+            .date-time-display {
+                text-align: left;
+                margin-top: 15px;
+            }
         }
 
         @media (max-width: 576px) {
@@ -1852,6 +1904,14 @@
 
             .name-text {
                 font-size: 2.5rem;
+            }
+
+            .current-date {
+                font-size: 16px;
+            }
+
+            .current-time {
+                font-size: 20px;
             }
         }
     </style>
@@ -2002,7 +2062,18 @@
                         <p>How are you feeling today?</p>
                     </div>
                 </div>
-                <div class="date-display" id="date-display"></div>
+                <div class="date-time-display" id="date-time-display">
+                    <div class="current-date" id="current-date"></div>
+                    <div class="current-time" id="current-time">
+                        <i class="fas fa-clock time-icon"></i>
+                        <span id="time-text"></span>
+                    </div>
+                    <div class="streak-counter" id="streak-counter">
+                        <i class="fas fa-fire streak-icon"></i>
+                        <span class="streak-number" id="streak-number">0</span>
+                        <span class="streak-label">day streak</span>
+                    </div>
+                </div>
             </div>
 
             <div class="dashboard-grid">
@@ -2330,34 +2401,34 @@
                         <div class="team-grid">
                             <div class="team-member">
                                 <div class="team-avatar">
-                                    <img src="souvik-.jpg" alt="Team Member">
+                                    <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Team Member">
                                 </div>
-                                <div class="team-name">Souvik Paul</div>
-                                <div class="team-role">Front-End UI/UX Designer (Team Leader)</div>
+                                <div class="team-name">Sarah Johnson</div>
+                                <div class="team-role">Founder & CEO</div>
                             </div>
                             
                             <div class="team-member">
                                 <div class="team-avatar">
-                                    <img src="soumojit.jpg" alt="Team Member">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
                                 </div>
-                                <div class="team-name">Soumojit Poddar</div>
-                                <div class="team-role">Developer</div>
-                            </div>
-                            
-                            <div class="team-member arp">
-                                <div class="team-avatar">
-                                    <img src="arpan.jpg" alt="Team Member">
-                                </div>
-                                <div class="team-name">Arpan Halder</div>
-                                <div class="team-role">Creative Head</div>
+                                <div class="team-name">Michael Chen</div>
+                                <div class="team-role">Lead Developer</div>
                             </div>
                             
                             <div class="team-member">
                                 <div class="team-avatar">
-                                    <img src="new_Logo.jpg" alt="Team Member">
+                                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Team Member">
                                 </div>
-                                <div class="team-name">Code-Nebula</div>
-                                <div class="team-role">Team Logo</div>
+                                <div class="team-name">Emily Rodriguez</div>
+                                <div class="team-role">UX Designer</div>
+                            </div>
+                            
+                            <div class="team-member">
+                                <div class="team-avatar">
+                                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Team Member">
+                                </div>
+                                <div class="team-name">David Wilson</div>
+                                <div class="team-role">Mental Health Advisor</div>
                             </div>
                         </div>
                     </div>
@@ -2376,14 +2447,14 @@
                             <div class="contact-icon">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <div>+91 8622082306</div>
+                            <div>+1 (555) 123-4567</div>
                         </div>
                         
                         <div class="contact-item">
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <div>Hooghly, West Bengal</div>
+                            <div>123 Wellness St, San Francisco, CA 94107</div>
                         </div>
                     </div>
                 </div>
@@ -2496,14 +2567,14 @@
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <div>+91 8622082306</div>
+                        <div>+1 (555) 123-4567</div>
                     </div>
                     
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div>Hooghly, West Bengal</div>
+                        <div>123 Wellness St, San Francisco, CA 94107</div>
                     </div>
                 </div>
                 
@@ -2550,26 +2621,6 @@
         </div>
     </footer>
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-storage-compat.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT_ID.appspot.com",
-            messagingSenderId: "YOUR_SENDER_ID",
-            appId: "YOUR_APP_ID"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.firestore();
-        const storage = firebase.storage();
-    </script>
-
     <script>
         // DOM Elements
         const loginPage = document.getElementById('login-page');
@@ -2604,7 +2655,6 @@
         const welcomeMessage = document.getElementById('welcome-message');
         const userAvatar = document.getElementById('user-avatar');
         const chatAvatar = document.getElementById('chat-avatar');
-        const dateDisplay = document.getElementById('date-display');
         const moodSuggestion = document.getElementById('mood-suggestion');
         const journalSuggestion = document.getElementById('journal-suggestion');
         const profileAvatar = document.getElementById('profile-avatar');
@@ -2645,6 +2695,9 @@
         const chatSend = document.getElementById('chat-send');
         const memoryGrid = document.getElementById('memory-grid');
         const contactSubmit = document.getElementById('contact-submit');
+        const currentDate = document.getElementById('current-date');
+        const timeText = document.getElementById('time-text');
+        const streakNumber = document.getElementById('streak-number');
 
         // User data
         let currentUser = {
@@ -2660,7 +2713,9 @@
             breathingMinutes: 0,
             breathingHistory: [],
             avatarUrl: '',
-            chatMessages: []
+            chatMessages: [],
+            lastLoginDate: null,
+            streak: 0
         };
 
         // Audio recording
@@ -3221,6 +3276,52 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
+        // Update date and time display
+        function updateDateTime() {
+            const now = new Date();
+            
+            // Format date
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            currentDate.textContent = now.toLocaleDateString('en-US', options);
+            
+            // Format time
+            let hours = now.getHours();
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            timeText.textContent = `${hours}:${minutes} ${ampm}`;
+            
+            // Update streak counter if this is a new day
+            updateStreakCounter(now);
+        }
+
+        // Update streak counter
+        function updateStreakCounter(currentDate) {
+            if (!currentUser.lastLoginDate) {
+                // First time login
+                currentUser.streak = 1;
+            } else {
+                const lastLogin = new Date(currentUser.lastLoginDate);
+                const yesterday = new Date(currentDate);
+                yesterday.setDate(yesterday.getDate() - 1);
+                
+                if (lastLogin.toDateString() === yesterday.toDateString()) {
+                    // Logged in yesterday, increment streak
+                    currentUser.streak++;
+                } else if (lastLogin.toDateString() !== currentDate.toDateString()) {
+                    // Missed a day, reset streak
+                    currentUser.streak = 1;
+                }
+            }
+            
+            // Update last login date
+            currentUser.lastLoginDate = currentDate;
+            
+            // Update display
+            streakNumber.textContent = currentUser.streak;
+        }
+
         // Page transitions
         function switchPage(fromPage, toPage, direction = 'slide') {
             fromPage.classList.remove('active');
@@ -3312,12 +3413,9 @@
             
             // Update chat messages
             updateChatMessages();
-        }
-
-        // Update date display
-        function updateDateDisplay() {
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            dateDisplay.textContent = new Date().toLocaleDateString('en-US', options);
+            
+            // Update streak counter
+            streakNumber.textContent = currentUser.streak;
         }
 
         // Handle header scroll effect
@@ -3390,6 +3488,26 @@
             }
         }
 
+        // Logout function
+        function logout() {
+            // Hide all pages except login
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            loginPage.classList.add('active');
+            
+            // Hide header and footer
+            mainHeader.classList.remove('visible');
+            footer.classList.remove('visible');
+            
+            // Reset form values
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            
+            // Show confirmation message
+            alert('You have been logged out successfully.');
+        }
+
         // Event Listeners
         loginBtn.addEventListener('click', () => {
             const email = document.getElementById('login-email').value;
@@ -3441,7 +3559,9 @@
                     { sender: 'Alex Johnson', content: 'Hey there! How are you feeling today?', date: new Date() },
                     { sender: 'me', content: 'I\'m doing well, thanks for asking!', date: new Date() },
                     { sender: 'Alex Johnson', content: 'That\'s great to hear! Anything exciting happening?', date: new Date() }
-                ]
+                ],
+                lastLoginDate: new Date(),
+                streak: 3
             };
             
             updateUserInfo();
@@ -3513,7 +3633,9 @@
                 savedActivities: [],
                 breathingMinutes: 0,
                 breathingHistory: [],
-                chatMessages: []
+                chatMessages: [],
+                lastLoginDate: new Date(),
+                streak: 1
             };
             
             updateUserInfo();
@@ -3538,13 +3660,7 @@
             switchPage(signupPage, loginPage, 'slide');
         });
 
-        logoutBtn.addEventListener('click', () => {
-            switchPage(dashboardPage, loginPage, 'slide');
-            
-            // Hide header and footer
-            mainHeader.classList.remove('visible');
-            footer.classList.remove('visible');
-        });
+        logoutBtn.addEventListener('click', logout);
 
         activityTabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -3779,13 +3895,16 @@
         function initApp() {
             setMood('calm');
             initMoodChart();
-            updateDateDisplay();
+            updateDateTime();
             updateMoodStats();
             updateActivities('calm');
             updateJournalHistory();
             updateBreathingHistory();
             updateMemoryLane();
             updateChatMessages();
+            
+            // Update time every minute
+            setInterval(updateDateTime, 60000);
             
             // Animate form container
             setTimeout(() => {
